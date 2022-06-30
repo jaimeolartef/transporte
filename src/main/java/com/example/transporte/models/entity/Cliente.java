@@ -1,5 +1,7 @@
 package com.example.transporte.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +22,10 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCliente", nullable = false)
+    @Column(name = "idcliente", nullable = false)
     private Integer idCliente;
 
-    @Column(name = "numDocumento", nullable = false)
+    @Column(name = "numdocumento", nullable = false)
     private String numDocumento;
 
     @Column(name = "nombre", nullable = false)
@@ -35,8 +37,7 @@ public class Cliente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
 
-    @JoinColumn(name = "tipoDocumento", referencedColumnName = "idTipoDocumento")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TipoDocumento tipoDocumento;
-    
+    @Column(name = "idtipodocumento", nullable = false)
+    private Integer idTipoDocumento;
+
 }

@@ -1,5 +1,6 @@
 package com.example.transporte.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,13 +22,13 @@ public class TipoDestino implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTipoDestino", nullable = false)
+    @Column(name = "idtipodestino", nullable = false)
     private Integer idTipoDestino;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDestino")
+    @Transient
     private List<Destino> destinos;
     
 }

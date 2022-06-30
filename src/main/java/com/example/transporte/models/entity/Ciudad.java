@@ -1,5 +1,8 @@
 package com.example.transporte.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,17 +24,16 @@ public class Ciudad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCiudad", nullable = false)
+    @Column(name = "idciudad", nullable = false)
     private Integer idCiudad;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @JoinColumn(name = "departamento", referencedColumnName = "idDepartamento")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Departamento departamento;
+    @Column(name = "iddepartamento", nullable = false)
+    private Integer idDepartamento;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudad")
+    @Transient
     private List<Destino> destinos;
     
 }

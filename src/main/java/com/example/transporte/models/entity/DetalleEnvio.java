@@ -1,5 +1,9 @@
 package com.example.transporte.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,16 +24,14 @@ public class DetalleEnvio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idDetalleEnvio", nullable = false)
+    @Column(name = "iddetalleenvio", nullable = false)
     private Integer idDetalleEnvio;
 
-    @JoinColumn(name = "tipoProducto", referencedColumnName = "idTipoProducto")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TipoProducto tipoProducto;
+    @Column(name = "idtipoproducto", nullable = false)
+    private Integer idTipoProducto;
 
-    @JoinColumn(name = "envio", referencedColumnName = "idEnvio")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Envio envio;
+    @Column(name = "idenvio", nullable = false)
+    private Integer idEnvio;
 
     @Column(name = "cantidad", nullable = false)
     private int cantidad;

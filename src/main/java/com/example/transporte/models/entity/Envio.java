@@ -1,5 +1,9 @@
 package com.example.transporte.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,17 +26,17 @@ public class Envio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEnvio", nullable = false)
+    @Column(name = "idenvio", nullable = false)
     private Integer idEnvio;
 
-    @Column(name = "numGuia", nullable = false)
+    @Column(name = "numguia", nullable = false)
     private String numGuia;
 
-    @Column(name = "fechaRegistro", nullable = false)
+    @Column(name = "fecharegistro", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
 
-    @Column(name = "fechaEntrega", nullable = false)
+    @Column(name = "fechaentrega", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEntrega;
 
@@ -45,15 +49,16 @@ public class Envio implements Serializable {
     @Column(name = "total")
     private Double total;
 
-    @JoinColumn(name = "destino", referencedColumnName = "idDestino")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Destino destino;
+    @Column(name = "idcliente", nullable = false)
+    private Integer idCliente;
 
-    @JoinColumn(name = "vehiculo", referencedColumnName = "idVehiculo")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Vehiculo vehiculo;
+    @Column(name = "iddestino", nullable = false)
+    private Integer idDestino;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "envio")
+    @Column(name = "idvehiculo", nullable = false)
+    private Integer idVehiculo;
+
+    @Transient
     private List<DetalleEnvio> detalleEnvios;
     
 }

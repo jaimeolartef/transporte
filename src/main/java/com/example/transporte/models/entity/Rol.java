@@ -1,7 +1,6 @@
-package com.example.transporte.models.dao;
+package com.example.transporte.models.entity;
 
-import com.example.transporte.models.entity.Envio;
-import com.example.transporte.models.entity.Usuario;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,12 +22,13 @@ public class Rol implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idrol", nullable = false)
 	private Long idRol;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+	@Transient
 	private List<Usuario> usuarios;
 
 }

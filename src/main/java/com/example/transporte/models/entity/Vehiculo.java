@@ -23,7 +23,7 @@ public class Vehiculo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idVehiculo", nullable = false)
+    @Column(name = "idvehiculo", nullable = false)
     private Integer idVehiculo;
 
     @Column(name = "nombre", nullable = false)
@@ -35,13 +35,12 @@ public class Vehiculo implements Serializable {
     @Column(name = "modelo", nullable = false)
     private String modelo;
 
-    @Column(name = "identificacionVehiculo", nullable = false)
+    @Column(name = "identificacionvehiculo", nullable = false)
     private String identificacionVehiculo;
 
-    @JoinColumn(name = "tipoVehiculo", referencedColumnName = "idTipoVehiculo")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TipoVehiculo tipoVehiculo;
+    @Column(name = "idtipovehiculo", nullable = false)
+    private Integer idTipoVehiculo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
+    @Transient
     private List<Envio> envios;
 }

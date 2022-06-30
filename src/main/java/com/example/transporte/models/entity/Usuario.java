@@ -1,6 +1,7 @@
 package com.example.transporte.models.entity;
 
-import com.example.transporte.models.dao.Rol;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,6 @@ public class Usuario {
     @Column(name = "habilitado")
     private boolean habilitado;
 
-    @JoinColumn(name = "rol", referencedColumnName = "idRol")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Rol rol;
+    @Column(name = "idrol", nullable = false)
+    private Integer idRol;
 }
