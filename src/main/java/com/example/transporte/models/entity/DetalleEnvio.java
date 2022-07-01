@@ -35,5 +35,7 @@ public class DetalleEnvio implements Serializable {
 
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
-    
+
+    @Transient
+    private TipoProducto tipoProducto;
 }

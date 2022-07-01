@@ -59,6 +59,15 @@ public class Envio implements Serializable {
     private Integer idVehiculo;
 
     @Transient
+    private Vehiculo vehiculo;
+
+    @Transient
+    private Cliente cliente;
+
+    @Transient
+    private Destino destino;
+
+    @Transient
     private List<DetalleEnvio> detalleEnvios;
     
 }

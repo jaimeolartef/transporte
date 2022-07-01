@@ -40,4 +40,6 @@ public class Cliente implements Serializable {
     @Column(name = "idtipodocumento", nullable = false)
     private Integer idTipoDocumento;
 
+    @Transient
+    private TipoDocumento tipoDocumento;
 }

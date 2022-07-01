@@ -41,5 +41,17 @@ public class Destino implements Serializable {
 
     @Transient
     private List<Envio> envios;
+
+    @Transient
+    private Ciudad ciudad;
+
+    @Transient
+    private TipoDestino tipoDestino;
+
+    @Transient
+    private List<TipoDestino> tipoDestinos;
+
+    @Transient
+    private List<Ciudad> ciudades;
     
 }

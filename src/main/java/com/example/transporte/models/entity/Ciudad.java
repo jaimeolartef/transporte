@@ -32,8 +32,5 @@ public class Ciudad implements Serializable {
 
     @Column(name = "iddepartamento", nullable = false)
     private Integer idDepartamento;
-
-    @Transient
-    private List<Destino> destinos;
     
 }

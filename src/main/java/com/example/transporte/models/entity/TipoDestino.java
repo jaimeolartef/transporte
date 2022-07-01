@@ -28,7 +28,5 @@ public class TipoDestino implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Transient
-    private List<Destino> destinos;
     
 }

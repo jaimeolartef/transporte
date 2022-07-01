@@ -6,12 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/transportadora")
+@RequestMapping("/transporte")
 public class DestinoView {
 
     @Autowired
     private DestinoController destinoController;
+
+    @GetMapping("/destinos")
+    public List<Destino> destinos() {
+        return destinoController.destinos();
+    }
 
     @PostMapping("/guardar-destino")
     public ResponseEntity guardar(@RequestBody Destino destino) {
