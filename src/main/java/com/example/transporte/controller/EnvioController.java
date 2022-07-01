@@ -1,6 +1,5 @@
 package com.example.transporte.controller;
 
-import com.example.transporte.models.entity.Cliente;
 import com.example.transporte.models.entity.Envio;
 import com.example.transporte.models.services.IClienteService;
 import com.example.transporte.models.services.IDestinoService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Controller
 public class EnvioController {

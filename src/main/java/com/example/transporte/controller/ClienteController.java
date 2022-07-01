@@ -39,10 +39,10 @@ public class ClienteController {
         } else {
             Cliente clienteGuardado = clienteService.save(cliente);
             if (Objects.nonNull(clienteGuardado) && Objects.nonNull(clienteGuardado.getIdCliente())) {
-                responseEntity = new ResponseEntity<>("El destino se guardo correctamente",
+                responseEntity = new ResponseEntity<>("El cliente se guardo correctamente",
                         HttpStatus.OK);
             } else {
-                responseEntity = new ResponseEntity<>("Error al guardar el destino",
+                responseEntity = new ResponseEntity<>("Error al guardar el cliente",
                         HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
