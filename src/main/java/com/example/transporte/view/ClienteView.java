@@ -3,13 +3,11 @@ package com.example.transporte.view;
 
 import com.example.transporte.controller.ClienteController;
 import com.example.transporte.models.entity.Cliente;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/transporte")
@@ -24,8 +22,13 @@ public class ClienteView {
     }
 
     @PostMapping("/guardar-cliente")
-    public ResponseEntity guardar(@RequestBody Cliente cliente) {
+    public ResponseEntity<String> guardar(@RequestBody Cliente cliente) {
         return clienteController.guardar(cliente);
+    }
+
+    @DeleteMapping("/eliminar-cliente/{id}")
+    public ResponseEntity<String> eliminarCliente(@PathVariable(value = "id") Integer idCliente) {
+        return clienteController.eliminar(idCliente);
     }
 
 }

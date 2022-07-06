@@ -39,19 +39,19 @@ public class EnvioController {
         return envioService.findAll();
     }
 
-    public ResponseEntity guardar(Envio envio) {
-        ResponseEntity responseEntity;
+    public ResponseEntity<String> guardar(Envio envio) {
+        ResponseEntity<String> responseEntity;
 
         if (!validacion(envio)) {
-            responseEntity = new ResponseEntity<>("Error paramatros invalidos.",
+            responseEntity = new ResponseEntity<String>("Error paramatros invalidos.",
                     HttpStatus.UNPROCESSABLE_ENTITY);
         } else {
             Envio envioGuardado = envioService.save(envio);
             if (Objects.nonNull(envioGuardado) && Objects.nonNull(envioGuardado.getIdEnvio())) {
-                responseEntity = new ResponseEntity<>("El envio se guardo correctamente",
+                responseEntity = new ResponseEntity<String>("El envio se guardo correctamente",
                         HttpStatus.OK);
             } else {
-                responseEntity = new ResponseEntity<>("Error al guardar el destino",
+                responseEntity = new ResponseEntity<String>("Error al guardar el destino",
                         HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }

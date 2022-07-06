@@ -22,7 +22,12 @@ public class TipoProductoView {
     }
 
     @PostMapping("/guardar-tipo-producto")
-    public ResponseEntity guardarDetalleEnvio(@RequestBody TipoProducto tipoProducto) {
+    public ResponseEntity<String> guardarTipoProducto(@RequestBody TipoProducto tipoProducto) {
         return tipoProductoController.guardar(tipoProducto);
+    }
+
+    @DeleteMapping("/eliminar-tipo-producto/{id}")
+    public ResponseEntity<String> eliminarTipoProducto(@PathVariable(value = "id") Integer idTipoProducto) {
+        return tipoProductoController.eliminar(idTipoProducto);
     }
 }

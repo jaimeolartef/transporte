@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Controller
 public class DestinoController {
@@ -33,19 +32,19 @@ public class DestinoController {
         return destinoService.findAll();
     }
 
-    public ResponseEntity guardar(Destino destino) {
+    public ResponseEntity<String> guardar(Destino destino) {
         ResponseEntity responseEntity;
 
         if (!validacion(destino)) {
-            responseEntity = new ResponseEntity<>("Error paramatros invalidos.",
+            responseEntity = new ResponseEntity<String>("Error paramatros invalidos.",
                     HttpStatus.UNPROCESSABLE_ENTITY);
         } else {
             Destino destinoGuardado = destinoService.save(destino);
             if (Objects.nonNull(destinoGuardado) && Objects.nonNull(destinoGuardado.getIdDestino())) {
-                responseEntity = new ResponseEntity<>("El destino se guardo correctamente",
+                responseEntity = new ResponseEntity<String>("El destino se guardo correctamente",
                         HttpStatus.OK);
             } else {
-                responseEntity = new ResponseEntity<>("Error al guardar el destino",
+                responseEntity = new ResponseEntity<String>("Error al guardar el destino",
                         HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
@@ -65,5 +64,20 @@ public class DestinoController {
         }
 
         return validacion;
+    }
+
+    public ResponseEntity<String> eliminar(Integer idDestino) {
+        ResponseEntity<String> responseEntity;
+
+        try {
+            destinoService.delete(idDestino);
+            responseEntity = new ResponseEntity<String>("El destino se elimino correctamente",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<String>("Error al eliminar el destino",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return responseEntity;
     }
 }

@@ -28,19 +28,19 @@ public class DetalleEnvioController {
         return detalleEnvioService.findByIdEnvio(idEnvio);
     }
 
-    public ResponseEntity guardarDetalleEnvio(List<DetalleEnvio> detalleEnvios) {
-        ResponseEntity responseEntity;
+    public ResponseEntity<String> guardarDetalleEnvio(List<DetalleEnvio> detalleEnvios) {
+        ResponseEntity<String> responseEntity;
 
         if (!validacion(detalleEnvios)) {
-            responseEntity = new ResponseEntity<>("Error paramatros invalidos.",
+            responseEntity = new ResponseEntity<String>("Error paramatros invalidos.",
                     HttpStatus.UNPROCESSABLE_ENTITY);
         } else {
             List<DetalleEnvio> detalleEnviosGuardado = (List<DetalleEnvio>) detalleEnvioService.saveAll(detalleEnvios);
             if (Objects.nonNull(detalleEnviosGuardado) && !detalleEnviosGuardado.isEmpty()) {
-                responseEntity = new ResponseEntity<>("El detalle del envio se guardo correctamente",
+                responseEntity = new ResponseEntity<String>("El detalle del envio se guardo correctamente",
                         HttpStatus.OK);
             } else {
-                responseEntity = new ResponseEntity<>("Error al guardar el detalle del envio",
+                responseEntity = new ResponseEntity<String>("Error al guardar el detalle del envio",
                         HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }

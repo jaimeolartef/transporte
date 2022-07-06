@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface IClienteService {
 
-    public Cliente findByIdCliente(Integer idCliente);
+    Cliente findByIdCliente(Integer idCliente);
 
-    public List<Cliente> findAll();
+    List<Cliente> findAll();
 
-    public Cliente save(Cliente cliente);
+    Cliente save(Cliente cliente);
+
+    void delete(Integer idCliente);
 }

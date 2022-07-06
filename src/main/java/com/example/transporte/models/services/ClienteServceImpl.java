@@ -27,4 +27,8 @@ public class ClienteServceImpl implements IClienteService{
     public Cliente save(Cliente cliente) {
         return clienteDao.save(cliente);
     }
+    @Override
+    public void delete(Integer idCliente) {
+        clienteDao.deleteById(idCliente);
+    }
 }

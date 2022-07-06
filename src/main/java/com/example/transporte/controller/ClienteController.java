@@ -1,8 +1,6 @@
 package com.example.transporte.controller;
 
-import com.example.transporte.models.dao.ITipoProductoDao;
 import com.example.transporte.models.entity.Cliente;
-import com.example.transporte.models.entity.Destino;
 import com.example.transporte.models.services.IClienteService;
 import com.example.transporte.models.services.ITipoDocumentoService;
 import org.apache.logging.log4j.util.Strings;
@@ -30,19 +28,19 @@ public class ClienteController {
         return clienteService.findAll();
     }
 
-    public ResponseEntity guardar(Cliente cliente) {
-        ResponseEntity responseEntity;
+    public ResponseEntity<String> guardar(Cliente cliente) {
+        ResponseEntity<String> responseEntity;
 
         if (!validacion(cliente)) {
-            responseEntity = new ResponseEntity<>("Error paramatros invalidos.",
+            responseEntity = new ResponseEntity<String>("Error paramatros invalidos.",
                     HttpStatus.UNPROCESSABLE_ENTITY);
         } else {
             Cliente clienteGuardado = clienteService.save(cliente);
             if (Objects.nonNull(clienteGuardado) && Objects.nonNull(clienteGuardado.getIdCliente())) {
-                responseEntity = new ResponseEntity<>("El cliente se guardo correctamente",
+                responseEntity = new ResponseEntity<String>("El cliente se guardo correctamente",
                         HttpStatus.OK);
             } else {
-                responseEntity = new ResponseEntity<>("Error al guardar el cliente",
+                responseEntity = new ResponseEntity<String>("Error al guardar el cliente",
                         HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
@@ -63,5 +61,20 @@ public class ClienteController {
         }
 
         return validacion;
+    }
+
+    public ResponseEntity<String> eliminar(Integer idCliente) {
+        ResponseEntity<String> responseEntity;
+
+        try {
+            clienteService.delete(idCliente);
+            responseEntity = new ResponseEntity<String>("El cliente se elimino correctamente",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<String>("Error al eliminar el cliente",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return responseEntity;
     }
 }

@@ -21,7 +21,7 @@ public class EnvioView {
     }
 
     @PostMapping("/guardar-envio")
-    public ResponseEntity guardar(@RequestBody Envio envio) {
+    public ResponseEntity<String> guardar(@RequestBody Envio envio) {
         return envioController.guardar(envio);
     }
 

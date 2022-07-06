@@ -21,7 +21,7 @@ public class DetalleEnvioView {
     }
 
     @PostMapping("/guardar-detalle-envio")
-    public ResponseEntity guardarDetalleEnvio(@RequestBody List<DetalleEnvio> detalleEnvios) {
+    public ResponseEntity<String> guardarDetalleEnvio(@RequestBody List<DetalleEnvio> detalleEnvios) {
         return detalleEnvioController.guardarDetalleEnvio(detalleEnvios);
     }
 }

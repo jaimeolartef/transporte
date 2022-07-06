@@ -22,17 +22,22 @@ public class TipoProductoController {
         return tipoProductoService.findAll();
     }
 
-    public ResponseEntity guardar(TipoProducto tipoProducto) {
-        ResponseEntity responseEntity;
+    public ResponseEntity<String> guardar(TipoProducto tipoProducto) {
+        ResponseEntity<String> responseEntity;
 
-        TipoProducto tipoProductoGuardado = tipoProductoService.save(tipoProducto);
-
-        if (Objects.nonNull(tipoProductoGuardado) && Objects.nonNull(tipoProductoGuardado.getIdTipoProducto())) {
-            responseEntity = new ResponseEntity<>("El tipo producto se guardo correctamente",
-                    HttpStatus.OK);
+        if (!validacion(tipoProducto)) {
+            responseEntity = new ResponseEntity<String>("Error paramatros invalidos.",
+                    HttpStatus.UNPROCESSABLE_ENTITY);
         } else {
-            responseEntity = new ResponseEntity<>("Error al guardar el tipo producto",
-                    HttpStatus.INTERNAL_SERVER_ERROR);
+
+            TipoProducto tipoProductoGuardado = tipoProductoService.save(tipoProducto);
+            if (Objects.nonNull(tipoProductoGuardado) && Objects.nonNull(tipoProductoGuardado.getIdTipoProducto())) {
+                responseEntity = new ResponseEntity<String>("El tipo producto se guardo correctamente",
+                        HttpStatus.OK);
+            } else {
+                responseEntity = new ResponseEntity<String>("Error al guardar el tipo producto",
+                        HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
 
         return responseEntity;
@@ -47,5 +52,20 @@ public class TipoProductoController {
         }
 
         return validacion;
+    }
+
+    public ResponseEntity<String> eliminar(Integer idTipoProducto) {
+        ResponseEntity<String> responseEntity;
+
+        try {
+            tipoProductoService.delete(idTipoProducto);
+            responseEntity = new ResponseEntity<String>("El tipo producto se elimino correctamente",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<String>("Error al eliminar el tipo producto",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return responseEntity;
     }
 }
