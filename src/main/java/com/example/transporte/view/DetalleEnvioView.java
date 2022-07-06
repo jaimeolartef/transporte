@@ -24,4 +24,9 @@ public class DetalleEnvioView {
     public ResponseEntity<String> guardarDetalleEnvio(@RequestBody List<DetalleEnvio> detalleEnvios) {
         return detalleEnvioController.guardarDetalleEnvio(detalleEnvios);
     }
+
+    @DeleteMapping("/eliminar-detalle-envio/{id}")
+    public ResponseEntity<String> eliminarCliente(@PathVariable(value = "id") Integer idEnvio) {
+        return detalleEnvioController.eliminar(idEnvio);
+    }
 }

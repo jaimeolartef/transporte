@@ -25,5 +25,8 @@ public class EnvioView {
         return envioController.guardar(envio);
     }
 
-
+    @DeleteMapping("/eliminar-envio/{id}")
+    public ResponseEntity<String> eliminarCliente(@PathVariable(value = "id") Integer idEnvio) {
+        return envioController.eliminar(idEnvio);
+    }
 }

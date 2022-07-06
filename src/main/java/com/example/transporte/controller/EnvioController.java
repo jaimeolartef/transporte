@@ -78,4 +78,19 @@ public class EnvioController {
         return validacion;
     }
 
+    public ResponseEntity<String> eliminar(Integer idEnvio) {
+        ResponseEntity<String> responseEntity;
+
+        try {
+            envioService.delete(idEnvio);
+            responseEntity = new ResponseEntity<String>("El detalle envio se elimino correctamente",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<String>("Error al eliminar el detalle envio",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return responseEntity;
+    }
+
 }

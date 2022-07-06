@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IDetalleEnvioService {
 
-    public Iterable<DetalleEnvio> saveAll(Iterable<DetalleEnvio> detalleEnvios);
-    public List<DetalleEnvio> findByIdEnvio(Integer idEnvio);
+    Iterable<DetalleEnvio> saveAll(Iterable<DetalleEnvio> detalleEnvios);
+    List<DetalleEnvio> findByIdEnvio(Integer idEnvio);
+    void delete(Integer idEnvio);
 }
