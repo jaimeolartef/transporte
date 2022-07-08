@@ -25,11 +25,13 @@ public class DestinoController {
     private ICiudadService ciudadService;
 
     public List<Destino> destinos() {
-        destinoService.findAll().forEach(destino -> {
+        List<Destino> destinos =  destinoService.findAll();
+
+        destinos.forEach(destino -> {
             destino.setTipoDestino(tipoDestinoService.findByIdTipoDestino(destino.getIdTipoDestino()));
             destino.setCiudad(ciudadService.findByIdCiudad(destino.getIdCiudad()));
         });
-        return destinoService.findAll();
+        return destinos;
     }
 
     public ResponseEntity<String> guardar(Destino destino) {
