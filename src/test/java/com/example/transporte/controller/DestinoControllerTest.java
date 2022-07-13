@@ -1,6 +1,7 @@
 package com.example.transporte.controller;
 
 import com.example.transporte.models.entity.Ciudad;
+import com.example.transporte.models.entity.Cliente;
 import com.example.transporte.models.entity.Destino;
 import com.example.transporte.models.entity.TipoDestino;
 import com.example.transporte.models.services.ICiudadService;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -60,7 +62,7 @@ class DestinoControllerTest {
 
     @Test
     void givenDestinoWhenGuardarThenResponseHttpOk() {
-        when(destinoService.save(destino)).thenReturn(destino);
+        when(destinoService.save(any(Destino.class))).thenReturn(destino);
         assertEquals(destinoController.guardar(destino), new ResponseEntity<String>("El destino se guardo correctamente",
                 HttpStatus.OK));
     }

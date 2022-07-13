@@ -54,7 +54,7 @@ public class DetalleEnvioController {
             validacion = false;
         } else {
             for(DetalleEnvio detalleEnvio : detalleEnvios) {
-                if (Objects.isNull(detalleEnvio.getIdDetalleEnvio())
+                if (Objects.isNull(detalleEnvio.getIdTipoProducto())
                     || Objects.isNull(detalleEnvio.getIdEnvio())
                     || Objects.isNull(detalleEnvio.getIdTipoProducto())) {
                     validacion = false;
